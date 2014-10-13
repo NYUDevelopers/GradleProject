@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+}
+
+ext { // Dependency version properties.
+    spring_version = "3.0.6.RELEASE"
+    mysql_version = "5.1.28"
+    springBasicDeps = [
+            "org.springframework:spring-context:${spring_version}",
+            "org.springframework:spring-aop:${spring_version}",
+            "org.springframework:spring-orm:${spring_version}",
+            "org.springframework:spring-tx:${spring_version}"
+     ]
+}
+
+dependencies {
+	compile springBasicDeps
+    compile "org.springframework:spring-web:${spring_version}"
+    compile "org.springframework:spring-webmvc:${spring_version}"
+    compile "mysql:mysql-connector-java:${mysql_version}"
+    testCompile "junit:junit:4.11"
+}
+
+mainClassName = 'hello.HelloWorld'
